@@ -174,6 +174,11 @@ int main()
 	  	case 3: 
 	  	     deletar(); //Chamada de funções
              break; //Parar programa
+        case 4: 
+		      printf("Obrigado por utilizar o sistema Ebac!\n");
+			  return 0;
+			  break;     
+                 
         
         default: //Qualquer outra opção que não esteja dentro dos casos acima
         	 printf("Essa opção não está disponivel, tente novamente!\n");
