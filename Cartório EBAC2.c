@@ -5,6 +5,9 @@
 
  int registro() // Função responsavel por cadastrar usuários
 {
+	
+	
+	
 	//Inicio criação de variaveis/strings
 	
     setlocale(LC_ALL, "Portuguese");
@@ -25,6 +28,7 @@
 	  FILE *file; //cria o arquivos
 	  file = fopen(arquivo, "w"); //cria o arquivo e o "W" significa escrever
 	  fprintf(file,cpf); //salvo valor variavel
+	  
 	  fclose(file); //fecha arquivo 
  
 		 system("cls");
@@ -33,8 +37,9 @@
 	     fprintf(file,"\nNome:");
 	     fclose(file);
 	
-	printf("Digite o nome a ser cadastrado: \n\n");
+	printf("Digite o nome a ser cadastrado: ");
 	  scanf("%s", nome);
+	  
 	  file = fopen(arquivo,"a");
 	  fprintf(file,nome);
 	  fclose(file);
@@ -45,8 +50,9 @@
 	     fprintf(file,"\nSobrenome:");
 	     fclose(file);
 	
-	printf("Digite o sobrenome a ser cadastrado: \n\n");
+	printf("Digite o sobrenome a ser cadastrado: ");
 	  scanf("%s", sobrenome);
+	 
 	  file = fopen(arquivo,"a");
 	  fprintf(file,sobrenome);
 	  fclose(file);
@@ -57,20 +63,17 @@
 	     fprintf(file,"\nCargo:");
 	      fclose(file);
             	    
-	printf("Digite o cargo a ser cadastrado: \n\n");
+	printf("Digite o cargo a ser cadastrado: ");
 	  scanf("%s", cargo);
+	  
 	  file = fopen(arquivo,"a");
 	  fprintf(file,cargo);
 	  fclose(file);
 	  
 	     system("cls");
 	  
-      file = fopen(arquivo, "a");
-	     fprintf(file,"\n");
-	     fclose(file);
-	     
-	system("pause");
-	  	
+         system("pause");
+
 	}
 
 int consulta()
@@ -80,12 +83,10 @@ int consulta()
 // Inicio criação de variaveis 
     char cpf[40];
     char conteudo[200];
-    char nome[40];
-	char sobrenome[40];
-	char cargo[40];
+
 // Final criação de variaveis
     
-	printf("Digite o CPF a ser consultado: \n"); //Coletando informações do usuário 
+	printf("Digite o CPF a ser consultado: "); //Coletando informações do usuário 
       scanf("%s",cpf); //%s Refere-se a string
     
      FILE *file; //Acessar arquivo "file"
@@ -97,16 +98,19 @@ int consulta()
   	{
 		printf("Usuário não encontrado!\n"); //Mensagem de aviso para usuário
  	}
- 	printf("Essas são as informações do usuário!\n\nCPF:");
+ 	     
 
-    while(fgets(cpf,40, file) != NULL) //Salvar enquanto conseguir informação e parar quando resultado for nulo  
+    while(fgets(conteudo,200, file) != NULL) //Salvar enquanto conseguir informação e parar quando resultado for nulo  
  	{
- 		printf("%s", cpf); 
- 		printf("\n\n");
-	 }
-	 
-system("pause"); //Pausar programa para o usúario conseguir ler
-
+ 		printf("Essas são as informações do usuário!\n\nCPF:");
+ 		printf("%s", conteudo); 
+	     printf("\n\n");
+	      }
+	      
+	      
+	 fclose(file);
+     system("pause"); //Pausar programa para o usúario conseguir ler
+     
  }
 
 int deletar()
@@ -122,19 +126,19 @@ int deletar()
      	
      	
      	remove(cpf); //Remover usuário usando variavel cpf como modelo de busca
-		
-        system("cls"); 
+		 
 			
 		FILE *file; //Acessar arquivo "file"
      	file = fopen(cpf,"r"); //No arquivo file ler("r") variavel cpf
      	
     
      	if(file == NULL) //Se não achar arquivo tomar as seguintes medidas 
-     	{ 
+     	    { 
      		printf("Usuário não se encontra no sistema!\n\n");
      		system("pause");
      		
-	    }
+	         }  
+	         fclose(file);
 		    	
 }
 
@@ -142,26 +146,46 @@ int main()
 {
 	int opcao=0;	//definindo variaveis
     int laco=1;
+    char senhadigitada[10]="a";
+    char login[18]="b";
+	int comparacao;
+		
+	printf ("### Cartório da EBAC ### \n\n");
+
+     printf ("Digite seu login: ");
+     scanf ("%s", login);
     
-    for(laco=1;laco=1;)
-    {
-	
-	  system("cls");
+     comparacao = strcmp(login, "admin");
     
-	  setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+     if(comparacao == 0)
+     {
+	
+	 printf ("Digite sua senha: ");
+	 scanf ("%s",senhadigitada);
+	
+	 comparacao = strcmp(senhadigitada, "admin");
+ 	 if(comparacao == 0)
+	 {
+		
+     for(laco=1;laco=1;)
+     {
+	
+	     system("cls");
+    
+	     setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
 	
 	
-	  printf ("### Cartório da EBAC ### \n\n"); //inicio do menu
-	  printf("Escolha a opção desejada do menu: \n\n");
-	  printf("\t1 - Registrar nomes\n");
-	  printf("\t2 - Consultar nomes\n");
-	  printf("\t3 - Deletar nomes\n"); 
-	  printf("\t4 - Sair do sistema\n\n");
-	  printf("Opção: ");//fim do menu
+	     printf ("### Cartório da EBAC ### \n\n"); //inicio do menu
+	     printf("Escolha a opção desejada do menu: \n\n");
+	     printf("\t1 - Registrar nomes\n");
+	     printf("\t2 - Consultar nomes\n");
+	     printf("\t3 - Deletar nomes\n"); 
+	     printf("\t4 - Sair do sistema\n\n");
+	     printf("Opção: ");//fim do menu
 	
-	  scanf("%d", &opcao); //armazenando a escolha do usuário 
+	     scanf("%d", &opcao); //armazenando a escolha do usuário 
 	
-	  system("cls");
+	     system("cls");
 	  
 	  switch(opcao) //Inicio seleção do menu
 	  {
@@ -185,9 +209,15 @@ int main()
 	         system("pause");
 	         break;
         	
-	  }
+	     }
 	  
 	 
      }
+ }
+ 
+     else
+     printf("Senha incorreta!");
+ }
+     else
+     printf("Login incorreto");
 }
-
