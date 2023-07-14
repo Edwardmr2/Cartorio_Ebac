@@ -20,7 +20,7 @@
 	
 		//FINAL criação de variaveis/strings
 	    
-	printf("Digite o CPF a ser cadastrado: \n\n "); //Coletando informação de usuário  
+	printf("Digite o CPF a ser cadastrado:"); //Coletando informação de usuário  
 	  scanf("%s", cpf); //%s refere-se a string
 	 
 	  strcpy(arquivo, cpf); //responsavel por copiar os valores das strings
@@ -99,11 +99,11 @@ int consulta()
 		printf("Usuário não encontrado!\n"); //Mensagem de aviso para usuário
  	}
  	     
-
-    while(fgets(conteudo,200, file) != NULL) //Salvar enquanto conseguir informação e parar quando resultado for nulo  
+printf("Essas são as informações do usuário!\n\nCPF:");
+    while(fgets(cpf,40, file) != NULL) //Salvar enquanto conseguir informação e parar quando resultado for nulo  
  	{
- 		printf("Essas são as informações do usuário!\n\nCPF:");
- 		printf("%s", conteudo); 
+ 		
+ 		printf("%s", cpf); 
 	     printf("\n\n");
 	      }
 	      
@@ -121,7 +121,7 @@ int deletar()
 	char cpf[40];
 //Final criação de variaveis
 	
-     	printf("Digite o CPF do usuário a ser deletado:\n");//Coletando informações
+     	printf("Digite o CPF do usuário a ser deletado:");//Coletando informações
      	scanf("%s",cpf);//%s refere-se a string da variavel cpf
      	
      	
@@ -149,6 +149,8 @@ int main()
     char senhadigitada[10]="a";
     char login[18]="b";
 	int comparacao;
+		
+		setlocale(LC_ALL, "Portuguese");
 		
 	printf ("### Cartório da EBAC ### \n\n");
 
